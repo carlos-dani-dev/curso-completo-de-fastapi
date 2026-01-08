@@ -1,15 +1,12 @@
 from typing import Annotated
 from sqlalchemy.orm import Session
-from fastapi import FastAPI, Depends, HTTPException, Path
+from fastapi import APIRouter, Depends, HTTPException, Path
 from starlette import status
-from database import engine, SessionLocal
-import models
+from database import SessionLocal
 from pydantic import BaseModel, Field
 from models import Todos
 
-app = FastAPI()
-
-models.Base.metadata.create_all(bind=engine)
+router = APIRouter()
 
 
 def get_db():
