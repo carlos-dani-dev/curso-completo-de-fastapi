@@ -3,14 +3,14 @@ from sqlalchemy.orm import sessionmaker
 from sqlalchemy.ext.declarative import declarative_base
 
 # cria uma localização para o banco de dados dentro da nossa aplicação FastAPI
-SQLALCHEMY_DATABASE_URL="sqlite:///./todos.db"
+SQLALCHEMY_DATABASE_URL="postgresql://postgres:carlos@localhost/TodoApplicationDatabase"
 
 # database engine permite a abertura de conexões com o banco de dados, para então ser usado
 """
 "check_same_thread" => Permite que mais de uma thread se comunique com o banco de dados ao mesmo tempo.
 Uma thread para cada requisição, nesse caso.
 """
-engine = create_engine(SQLALCHEMY_DATABASE_URL, connect_args={"check_same_thread": False})
+engine = create_engine(SQLALCHEMY_DATABASE_URL)
 
 """
 as sessões serão controladas 100% pelo programador.
