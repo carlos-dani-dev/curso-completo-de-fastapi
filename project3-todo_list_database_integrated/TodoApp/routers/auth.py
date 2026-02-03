@@ -10,13 +10,17 @@ from starlette import status
 from fastapi.security import OAuth2PasswordRequestForm, OAuth2PasswordBearer
 from jose import JWTError, jwt
 from fastapi.templating import Jinja2Templates
+from ..config import SECRET_KEY, ALGORITHM
 
 router = APIRouter(
     prefix='/auth',
     tags=['auth']
 )
-SECRET_KEY='0ead2d317984b985f53ac3ce65a465a39abb0c0180056de00627048f632c11e3'
-ALGORITHM='HS256'
+
+
+if not SECRET_KEY:
+    raise RuntimeError("SECRET_KEY não carregada do .env")
+
 bcrypt_context = CryptContext(schemes=['bcrypt'], deprecated='auto')
 oauth2_bearer = OAuth2PasswordBearer(tokenUrl='/auth/token')
 
@@ -108,7 +112,7 @@ async def create_user(db: db_dependency,
         role=create_user_request.role,
         hashed_password=bcrypt_context.hash(create_user_request.password),
         is_active=True,
-        phone_numver=create_user_request.phone_number
+        phone_number=create_user_request.phone_number
     )
     
     db.add(create_user_model)
