@@ -13,7 +13,6 @@ app = FastAPI()
 def health_check():
     return {'status': 'Healthy'}
 
-
 Base.metadata.create_all(bind=engine)
 
 templates = Jinja2Templates(directory="TodoApp/templates")

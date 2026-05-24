@@ -13,8 +13,8 @@ from fastapi.templating import Jinja2Templates
 from ..config import SECRET_KEY, ALGORITHM
 
 router = APIRouter(
-    prefix='/auth',
-    tags=['auth']
+    prefix='/admin',
+    tags=['admin']
 )
 
 
