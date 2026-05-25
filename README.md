@@ -30,7 +30,7 @@
   </tr>
   <tr>
     <td>
-      Pytest
+      <a href="https://docs.pytest.org/en/stable/">Pytest</a>
     </td>
     <td>
       Framework Python utilizado para testagem básica dos endpoints das aplicações que foram construídas durante o curso.
